@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="dashboard">
+
+<h1>Welcome Amarjeet 👋</h1>
+<button id="themeBtn" onclick="toggleTheme()">
+
+🌙 Dark Mode
+
+</button>
+
+<div id="recruiterDashboard">
+
+<h2>🏢 Recruiter Dashboard</h2>
+
+<button onclick="loadRecruiterDashboard()">
+
+Load Dashboard
+
+</button>
+
+<div id="recruiterResult">
+
+Waiting...
+
+</div>
+
+</div>
+<button onclick="showDatabase()">
+
+📂 All Resume Database
+
+</button>
+
+<div id="database">
+
+</div>
+
+<div class="stats">
+
+<div class="statCard">
+
+<h3>📄 Total Resume</h3>
+
+<h2 id="totalResume">0</h2>
+
+</div>
+
+<div class="statCard">
+
+<h3>📈 Average ATS</h3>
+
+<h2 id="averageATS">0%</h2>
+
+</div>
+
+<div class="statCard">
+
+<h3>🏆 Best Candidate</h3>
+
+<h2 id="bestCandidate">---</h2>
+
+</div>
+
+<div class="statCard">
+
+<h3>⭐ Top Skills</h3>
+
+<h2 id="topSkills">---</h2>
+
+</div>
+
+<div class="statCard">
+
+<h3>✅ Hiring</h3>
+
+<h2 id="hiringStatus">Pending</h2>
+
+</div>
+
+</div>
+
+<div id="summaryCards">
+
+    <div class="summaryCard">
+        <h3>📈 ATS</h3>
+        <h2 id="cardATS">0%</h2>
+    </div>
+
+    <div class="summaryCard">
+        <h3>💻 Skills</h3>
+        <h2 id="cardSkills">0</h2>
+    </div>
+
+    <div class="summaryCard">
+        <h3>📜 Certificates</h3>
+        <h2 id="cardCertificate">0</h2>
+    </div>
+
+    <div class="summaryCard">
+        <h3>💼 Career</h3>
+        <h2 id="cardCareer">--</h2>
+    </div>
+
+</div>
+
+<div class="card">
+
+    <h2>📄 Resume</h2>
+
+    <input type="file" id="resumeFile">
+
+    <br><br>
+
+    <button onclick="analyzeResume()">
+
+        Analyze Resume
+
+    </button>
+
+</div>
+
+<hr>
+<div id="atsBox">
+
+    <h2>📈 ATS Score</h2>
+
+    <div class="progress">
+
+        <div id="atsProgress"></div>
+
+    </div>
+
+    <h3 id="atsText">0%</h3>
+
+</div> 
+
+<div id="result">
+
+<h2>AI Analysis Result</h2>
+
+<p>Waiting for Resume...</p>
+
+</div>
+<div id="twinCard" class="card">
+
+<h2>👤 Career Digital Twin</h2>
+
+<h3 id="twinCareer">AI Engineer</h3>
+
+<p id="twinStrength">Excellent Technical Profile</p>
+
+<p id="twinSkills">Python, ML</p>
+
+</div>
+
+<div id="graphBox">
+
+    <h2>📊 AI Skill Graph</h2>
+
+    <canvas id="skillChart"></canvas>
+
+</div>
+
+<div id="digitalTwin">
+
+    <h2>🤖 AI Career Digital Twin</h2>
+
+    <div class="twinCard">
+
+        <p><b>Current Career:</b> <span id="currentCareer">-</span></p>
+
+        <p><b>Career Readiness:</b> <span id="careerReadiness">0%</span></p>
+
+        <p><b>Skill Gap:</b> <span id="skillGap">0 Skills</span></p>
+
+        <p><b>Dream Role:</b> AI Engineer</p>
+
+        <p><b>Estimated Salary:</b> ₹8–18 LPA</p>
+
+    </div>
+
+</div>
+<div id="comparisonBox">
+
+<h2>⚔ Resume Comparison</h2>
+
+<button onclick="compareResume()">
+
+Compare Last 2 Resume
+
+</button>
+
+<div id="comparisonResult">
+
+Waiting...
+
+</div>
+
+</div>
+<button onclick="downloadReport()">
+
+    📄 Download AI Report
+
+</button>
+
+<div class="card">
+
+<h2>🎤 AI Mock Interview</h2>
+
+<button onclick="startInterview()">
+
+Start Interview
+
+</button>
+
+<div id="interviewBox">
+
+Waiting...
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>🐙 GitHub Analyzer</h2>
+
+<input
+type="text"
+id="githubUsername"
+placeholder="Enter GitHub Username">
+
+<br><br>
+
+<button onclick="analyzeGithub()">
+
+Analyze GitHub
+
+</button>
+
+<div id="githubResult">
+
+Waiting...
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>💼 LinkedIn Analyzer</h2>
+
+<button onclick="analyzeLinkedIn()">
+
+Analyze LinkedIn
+
+</button>
+
+<div id="linkedinResult">
+
+Waiting...
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>📜 Certificates</h2>
+
+<input type="file" id="certificateFile">
+
+<br><br>
+
+<button type="button" onclick="uploadCertificate()">
+    Upload Certificate
+</button>
+<p id="certificateResult"></p>
+
+</div>
+
+<div class="card">
+
+<h2>📊 Skills</h2>
+
+<button type="button" onclick="showSkills()">
+    Analyze Skills
+</button>
+
+<p id="skills"></p>
+
+</div>
+
+<div class="card">
+
+<h2>💼 Career</h2>
+
+<button type="button" onclick="careerPrediction()">
+    Predict Career
+</button>
+
+<p id="career"></p>
+
+</div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="script.js"></script>
+
+<hr>
+
+<footer>
+
+AI Career Digital Twin 2.0
+
+<br>
+
+Developed By Amarjeet
+
+<br>
+
+B.Tech AI & DS
+
+</footer>
+
+</body>
+</html>
