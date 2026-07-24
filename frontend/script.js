@@ -1,3 +1,4 @@
+const API = "https://ai-career-digital-twin-api-2.onrender.com";
 // ================= Resume Analysis =================
 
 async function analyzeResume() {
@@ -12,7 +13,7 @@ async function analyzeResume() {
     const formData = new FormData();
     formData.append("file", fileInput.files[0]);
 
-    const response = await fetch("http://127.0.0.1:9000/analyze-resume", {
+    const response = await fetch(`${API}/analyze-resume`, {
         method: "POST",
         body: formData
     });
@@ -74,7 +75,7 @@ async function analyzeResume() {
         data["Detected Skills"].slice(0,3).join(", ");
 
     document.getElementById("hiringStatus").innerHTML =
-        data["ATS Score"] >= "70%" ? "Hire ✅" : "Need Improvement";
+        parseInt(data["ATS Score"]) >= 70 ? "Hire ✅" : "Need Improvement";
 
     updateATS(data["ATS Score"]);
 
@@ -102,7 +103,7 @@ async function uploadCertificate(){
 
     formData.append("file", file.files[0]);
 
-    const response = await fetch("http://127.0.0.1:9000/upload-certificate",{
+    const response = await fetch(`${API}/upload-certificate`,{
 
         method:"POST",
 
@@ -127,7 +128,7 @@ async function uploadCertificate(){
 
 async function showSkills(){
 
-    const response = await fetch("http://127.0.0.1:9000/skills");
+    const response = await fetch(`${API}/skills`);
 
     const data = await response.json();
 
@@ -141,7 +142,7 @@ async function showSkills(){
 
 async function careerPrediction(){
 
-    const response = await fetch("http://127.0.0.1:9000/career-prediction");
+    const response = await fetch(`${API}/career-prediction`);
 
     const data = await response.json();
 
@@ -244,13 +245,13 @@ function updateDigitalTwin(data){
 }
 function downloadReport(){
 
-    window.open("http://127.0.0.1:9000/download-report");
+    window.open(`${API}/download-report`);
 
 }
 async function startInterview(){
 
     const response =
-    await fetch("http://127.0.0.1:9000/mock-interview");
+    await fetch(`${API}/mock-interview`);
 
     const data =
     await response.json();
@@ -306,7 +307,7 @@ async function analyzeGithub(){
 
     const response =
     await fetch(
-    "http://127.0.0.1:9000/github-analysis/"+username
+    `${API}/github-analysis/${username}`
     );
 
     const data =
@@ -355,7 +356,7 @@ async function analyzeGithub(){
 async function analyzeLinkedIn(){
 
     const response =
-    await fetch("http://127.0.0.1:9000/linkedin-analysis");
+    await fetch(`${API}/linkedin-analysis`);
 
     const data =
     await response.json();
@@ -432,7 +433,7 @@ function toggleTheme(){
 async function compareResume(){
 
     const response =
-    await fetch("http://127.0.0.1:9000/compare-resumes");
+    await fetch(`${API}/compare-resumes`);
 
     const data =
     await response.json();
@@ -471,7 +472,7 @@ async function compareResume(){
 async function showDatabase(){
 
     const response =
-    await fetch("http://127.0.0.1:9000/all-resumes");
+    await fetch(`${API}/all-resumes`);
 
     const data =
     await response.json();
